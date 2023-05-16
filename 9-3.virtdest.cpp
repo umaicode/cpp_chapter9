@@ -9,46 +9,46 @@
 */
 #include <iostream>
 using namespace std;
-class BaseClass{
+class BaseClass {
 public:
-    BaseClass(){
-        cout<< "Base class 생성자 호출"<< endl;
-    }
-	/*
-    virtual ~BaseClass(){ 
-        cout<< "Base class 소멸자 호출"<< endl;
-    }
-	*/
-	~BaseClass() {
+	BaseClass() {
+		cout << "Base class 생성자 호출" << endl;
+	}
+
+	virtual ~BaseClass() {
 		cout << "Base class 소멸자 호출" << endl;
+	}
+
+	//~BaseClass() {
+	//	cout << "Base class 소멸자 호출" << endl;
+	//}
+};
+
+class Derived : public BaseClass {
+public:
+	Derived() {
+		cout << "Derived class 생성자 호출" << endl;
+	}
+	~Derived() {
+		cout << "Derived class 소멸자 호출" << endl;
 	}
 };
 
-class Derived : public BaseClass{
-public:
-    Derived(){
-        cout<< "Derived class 생성자 호출"<< endl;
-    }
-    ~Derived(){
-        cout<< "Derived class 소멸자 호출"<< endl;
-    }
-};
-
-void main(){
-    cout<<"----BaseClass와 Derived class의 경우"<<endl;
-    //BaseClass pointer 변수 선언  
-    BaseClass* pbase;
-    //pointer 변수 할당(BaseClass 객체)      
-    pbase = new BaseClass;
-    //자원 해제  
-    delete pbase;                
-    cout << endl;
-    //pointer 변수 할당(Derived 객체)
-    pbase = new Derived;  
-    //자원 해제     
-    delete pbase; //virual이 없을 때 destructor가 호출되는지를 확인하는 실습               
-    cout << endl;
-    Derived* d = new Derived;
-    delete d;
-    system("pause");
+void main() {
+	cout << "----BaseClass와 Derived class의 경우" << endl;
+	//BaseClass pointer 변수 선언  
+	BaseClass* pbase;
+	//pointer 변수 할당(BaseClass 객체)      
+	pbase = new BaseClass;
+	//자원 해제  
+	delete pbase;
+	cout << endl;
+	//pointer 변수 할당(Derived 객체)
+	pbase = new Derived;
+	//자원 해제     
+	delete pbase; //virual이 없을 때 destructor가 호출되는지를 확인하는 실습               
+	cout << endl;
+	Derived* d = new Derived;
+	delete d;
+	system("pause");
 }
